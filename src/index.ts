@@ -32,7 +32,7 @@ import * as core from "@actions/core";
 
     core.info(`Fetch successful: ${JSON.stringify(result)}`);
 
-    core.info("Starting to reset --hard ");
+    core.info("Starting to reset --hard");
     response = await fetch(`${apiUrl}/versioncontrol/commands/reset`, {
       method: "POST",
       headers: {
@@ -40,7 +40,7 @@ import * as core from "@actions/core";
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        args: ["--hard", "origin/main"],
+        args: ["--hard", `${remote}/${branch}`],
       }),
     });
 

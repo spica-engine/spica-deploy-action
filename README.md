@@ -1,20 +1,20 @@
 # Version Control Deploy 🚀
 
-> GitHub Action to trigger deployment on a Spica production instance using version control sync commands.
+> GitHub Action to trigger deployment between Spica instances using version control commands.
 
 ---
 
 ## 🧩 About
 
-This GitHub Action is used to automate deployment of resources from **staging** to **production** in Spica-based projects via version control.  
-It replaces manual `curl` commands by providing a configurable and reusable action with minimal setup.
+This GitHub Action automates resource deployment between **any Spica instances** using version control capabilities.  
+It eliminates the need for manual `curl` commands by offering a configurable, reusable action suitable for various environments.
 
-It performs:
+It performs the following steps:
 
-1. `fetch <remote> <branch>` to retrieve the latest changes
-2. `reset --hard origin/main` to apply the changes, avoiding conflicts
+1. `fetch <remote> <branch>` – Retrieves the latest changes from a versioned source instance.
+2. `reset --hard <remote>/<branch>` – Force-applies the changes to the target instance, ensuring a clean sync without merge conflicts.
 
-This flow ensures a clean synchronization with production, ideal for CI pipelines that auto-deploy after merges to `main`.
+This setup is ideal for pipelines that deploy between any Spica environments — such as development to testing, testing to production, or cross-instance syncing — via version-controlled snapshots.
 
 ---
 
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Trigger Production Sync
-        uses: Mozan0/auto-deploy-action@v0.1.0
+        uses: spica-engine/spica-deploy-action@v0.1.0
         with:
           apiUrl: https://prod-instance.spicaengine.com/api
           apiKey: ${{ secrets.SPICA_API_KEY }}
