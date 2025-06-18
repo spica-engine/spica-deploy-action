@@ -19835,7 +19835,7 @@ var core = __toESM(require_core());
       return;
     }
     core.info(`Fetch successful: ${JSON.stringify(result)}`);
-    core.info("Starting to reset --hard ");
+    core.info("Starting to reset --hard");
     response = await fetch(`${apiUrl}/versioncontrol/commands/reset`, {
       method: "POST",
       headers: {
@@ -19843,7 +19843,7 @@ var core = __toESM(require_core());
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        args: ["--hard", "origin/main"]
+        args: ["--hard", `${remote}/${branch}`]
       })
     });
     result = await response.json();
